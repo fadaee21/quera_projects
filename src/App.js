@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import usersData from "./data/users.json";
+import UserList from "./components/UserList";
+import AverageAge from "./components/AverageAge";
 
-function App() {
+const users = usersData.filter((e) => e.role === "user");
+const admin = usersData.filter((e) => e.role === "admin");
+const sum = admin.map((e) => e.age).reduce((a, b) => a + b);
+const avg = sum / admin.length;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UserList users={users} />
+      <AverageAge average={avg} />
+    </>
   );
-}
+};
 
 export default App;
