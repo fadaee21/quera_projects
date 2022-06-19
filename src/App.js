@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useInput } from "./useInput";
 
 function App() {
+  const email = useInput("email", "");
+  const password = useInput("password", "");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type={email.type} value={email.inputState} onChange={email.onChange}/>
+      <input type={password.type} value={password.inputState} onChange={password.onChange} /> 
+      {/* <input {...email} />
+      <input {...password} /> */}
+      <button
+        onClick={() => console.log(email.inputState, password.inputState)}
+      >
+        click
+      </button>
     </div>
   );
 }
 
 export default App;
+
+
+
+
