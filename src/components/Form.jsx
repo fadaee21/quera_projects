@@ -30,7 +30,7 @@ function Form({ setFlashCard }) {
       />
 
       <input
-        // id="persian-equivalent-input"
+        id="persian-equivalent-input"
         placeholder="header"
         value={gg}
         onChange={e => setGg(e.target.value)}

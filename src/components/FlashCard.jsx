@@ -9,7 +9,7 @@ function FlashCard({ flashCard }) {
       onMouseLeave={() => setIsFlipped(false)}
       className={`flashcard${isFlipped ? ' flip' : ''}`}>
       <div className="front-side">{flashCard.word}</div>
-      <div className="back-side">{flashCard.persianEquivalent}</div>
+      <div className="back-side">{flashCard.persianEquivalent}</div>z
     </div>
   )
 }
