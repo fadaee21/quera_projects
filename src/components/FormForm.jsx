@@ -11,13 +11,10 @@ import { useState } from 'react'
 
 export const FormForm = () => {
 
-
-    const personG = {
+    const [person, setPerson] = useState({
         firstName: "",
         lastName: ""
-    }
-
-    const [person, setPerson] = useState(personG)
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target
