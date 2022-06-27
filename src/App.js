@@ -16,8 +16,11 @@ function App() {
         <ScrollToTop />
         <Links />
         <TransitionGroup component={null}>
-          <CSSTransition key={location.pathname} classNames="page" timeout={300}>
-          {/* <CSSTransition key={location.pathname} classNames="next"timeout={500}> */}
+          {/* <CSSTransition key={location.pathname} classNames="page" timeout={300}> */}
+          <CSSTransition
+            key={location.pathname}
+            classNames="next"
+            timeout={500}>
             <Routes location={location}>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<About />} />
