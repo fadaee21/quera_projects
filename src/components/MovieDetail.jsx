@@ -1,7 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 function MovieDetail() {
   const [movie, setMovie] = useState({})
+
+  const { movieId } = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:9000/movies/${movieId}`)
+      .then((res) => res.json())
+      .then((movies) => setMovie(movies))
+  }, [movieId])
 
   return (
     <div className="movie-detail container">

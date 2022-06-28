@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import MovieList from './MovieList'
 
 function Movies() {
@@ -12,6 +13,8 @@ function Movies() {
 
   return (
     <div className="container">
+      <h6><Link to={'practice'}>go to practice page</Link></h6>
+      <Outlet/>
       <MovieList movies={movies} />
     </div>
   )
