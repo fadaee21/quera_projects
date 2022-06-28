@@ -1,24 +1,31 @@
-import React, { useState } from "react";
-import "./MessageForm.css";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import './MessageForm.css'
 
 function MessageForm({ onMessageSend }) {
-  const [message, setMessage] = useState({
-    me: false,
-    body: "",
-  });
+  const [inputValue, setInputValue] = useState('')
 
-  const inputHandleChange = (e) => {
-    const val = e.target.value;
-    setMessage((old) => ({ ...old, body: val }));
-  };
-
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    const me = message.me;
-    const body = message.body;
-    onMessageSend({ me, body });
-    setMessage((old) => ({ ...old, body: "" }));
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+    const myMessage = inputValue
+    if (myMessage !== null && !/^ *$/.test(myMessage)) {
+      setInputValue('')
+      onMessageSend(myMessage, false)
+      fetch(`http://localhost:3001/message/${inputValue}`)
+        .then((res) => res.json())
+        .then((response) => {
+          onMessageSend(response.message, true)
+        })
+    }
   }
+
+  const handleChangeInput = (event) => {
+    setInputValue(event.target.value)
+  }
+
+  useEffect(() => {
+    document.getElementById('message-input').focus()
+  })
 
   return (
     <form
@@ -28,18 +35,19 @@ function MessageForm({ onMessageSend }) {
     >
       <div className="input-container">
         <input
+          id="message-input"
           data-testid="input-message"
           type="text"
           placeholder="پیام خود را اینجا بنویسید..."
-          onChange={(e) => inputHandleChange(e)}
-          value={message.body}
+          value={inputValue}
+          onChange={handleChangeInput}
         />
       </div>
       <div className="button-container">
         <button type="submit">ارسال</button>
       </div>
     </form>
-  );
+  )
 }
 
-export default MessageForm;
+export default MessageForm
